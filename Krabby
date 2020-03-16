@@ -1,0 +1,368 @@
+/* Sweep
+ by BARRAGAN <http://barraganstudio.com>
+ This example code is in the public domain.
+
+ modified 8 Nov 2013
+ by Scott Fitzgerald
+ http://www.arduino.cc/en/Tutorial/Sweep
+*/
+
+#include <Servo.h>
+
+Servo rvh; 
+Servo rvv;
+Servo rhh;
+Servo rhv;
+Servo lhh;
+Servo lhv;
+Servo lvh;
+Servo lvv;
+// create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 90;    // variable to store the servo position
+boolean eventlaufen;
+int i =175;
+int j = 135;
+int o=5;
+int l=45;
+int k=0;
+int x;
+void setup() {
+  Serial.begin(9600);
+  rvh.attach(3);
+  delay(200);
+  rvv.attach(2);
+  delay(200);
+  rhv.attach(4);
+  delay(200);
+  rhh.attach(5);
+  delay(200);
+  lhv.attach(8);
+  delay(200);
+  lhh.attach(9);
+  delay(200);
+  lvv.attach(6);
+  delay(200);
+  lvh.attach(7);
+  delay(1000);
+  eventlaufen= true;
+  // attaches the servo on pin 9 to the servo object
+
+
+//0 stand auf 90grad
+    rvh.write(pos);
+    rvv.write(pos);
+    rhh.write(pos);
+    rhv.write(pos);
+    lhh.write(pos);
+    lhv.write(pos);
+    lvh.write(pos);
+    lvv.write(pos);
+delay(1000);
+
+/*
+Jetzt beginnt das laufen lernen
+
+for(k=0; k<=3; k+=1){
+//laufen rechts hinten
+    rhh.write(o);
+    rhv.write(i);
+      delay(400);
+    rhh.write(i);
+    rhv.write(o);
+      delay(400);
+    rhh.write(i);
+    rhv.write(i);
+    rhh.write(i);  
+      delay(400); 
+}
+
+for(k=0; k<=3; k+=1){
+//laufen rechts vorne + hinten
+    rvh.write(o);
+    rvv.write(i);
+    rhh.write(o);
+    rhv.write(i);
+      delay(400);
+    rvh.write(i);
+    rvv.write(o);
+    rhh.write(i);
+    rhv.write(o);
+      delay(400);
+    rvh.write(i);
+    rvv.write(i);
+    rvh.write(i);
+    rhh.write(i);
+    rhv.write(i);
+    rhh.write(i);    
+      delay(400); 
+}
+
+
+
+
+
+for(k=0; k<=3; k+=1){
+//laufen links hinten
+    lhh.write(i);
+    lhv.write(i);
+      delay(400);
+    lhh.write(o);
+    lhv.write(o);
+      delay(400);
+    lhh.write(i);
+    lhv.write(i);
+    lhh.write(o);  
+      delay(400); 
+}
+//laufen linksvorne + linkshinten
+for(k=0; k<=3; k+=1){
+    lvh.write(i);
+    lvv.write(i);
+    lhh.write(i);
+    lhv.write(i);
+      delay(400);
+    lvh.write(o);
+    lvv.write(o);
+    lhh.write(o);
+    lhv.write(o);
+      delay(400);
+    lvh.write(i);
+    lvv.write(i);
+    lvh.write(o);
+    lhh.write(i);
+    lhv.write(i);
+    lhh.write(o);    
+      delay(400); 
+}
+delay(3000);
+
+//laufen alles
+for(k=0; k<=10; k+=1){
+    lvh.write(i);
+    lvv.write(i);
+    lhh.write(i);
+    lhv.write(i);
+    rvh.write(o);
+    rvv.write(i);
+    rhh.write(o);
+    rhv.write(i);
+      delay(400);
+    lvh.write(o);
+    lvv.write(o);
+    lhh.write(o);
+    lhv.write(o);
+    rvh.write(i);
+    rvv.write(o);
+    rhh.write(i);
+    rhv.write(o);
+      delay(400);
+    lvh.write(i);
+    lvv.write(i);
+    lvh.write(o);
+    lhh.write(i);
+    lhv.write(i);
+    lhh.write(o);
+    rvh.write(i);
+    rvv.write(i);
+    rvh.write(i);
+    rhh.write(i);
+    rhv.write(i);
+    rhh.write(i);        
+      delay(400); 
+}
+ 
+delay(3000);
+  
+
+*/
+
+}
+
+void laufenv(int x){
+//laufen 0
+for(k=1; k<=x; k+=1){
+
+rvv.write(i);
+  rvh.write(o);
+  delay(150); 
+
+
+
+
+  
+    rvh.write(pos);
+    rvv.write(pos);
+    rhh.write(pos);
+    rhv.write(pos);
+    lhh.write(pos);
+    lhv.write(pos);
+    lvh.write(pos);
+    lvv.write(pos);
+    delay(150);
+}
+
+}
+
+
+void stehen(int x){
+  
+//laufen 0
+for(k=1; k<=x; k+=1){
+  //links vorne
+  rvv.write(i);
+  delay(150);
+    rvh.write(j);
+      delay(150);
+    rvv.write(j);
+    delay(150);
+    rvh.write(l);
+      delay(150);
+      rvv.write(i);
+      delay(150);
+}
+for(k=1; k<=x; k+=1){
+  //rechts vorne
+    lvh.write(l);
+      delay(150);
+    lvv.write(j);
+      delay(150);
+    lvh.write(j);
+      delay(150);
+    lvv.write(i);
+      delay(150);
+}
+for(k=1; k<=x; k+=1){
+  //links hinten
+    rhv.write(j);
+    delay(150);
+    rhh.write(l);
+    delay(150);
+    rhv.write(i);
+    delay(150);
+    rhh.write(j);
+    delay(150);
+}
+for(k=1; k<=x; k+=1){
+  //rechts hinten
+    lhv.write(j);
+    delay(150);
+    lhh.write(j);
+    delay(150);
+    lhv.write(i);
+    delay(150);
+    lhh.write(l);
+    delay(150);
+}
+
+delay(500);
+
+/*for(k=1; k<=x; k+=1){
+  //rechte seite hinten
+    lhh.write(j);
+    lhv.write(j);
+    delay(1500);
+    lhv.write(i);
+    lvh.write(j);
+    delay(1500);
+    lhv.write(i);
+    lvv.write(j);
+    delay(1500);
+    lhh.write(l);
+    lvv.write(i);
+    delay(1500);
+}
+*/
+}
+
+
+void laufen(int x){
+  Serial.print("laufe: "+ x);
+  delay(10);
+
+//laufen alles
+for(k=0; k<=x; k+=1){
+    lvh.write(i);
+    lvv.write(i);
+    lhh.write(i);
+    lhv.write(i);
+    rvh.write(o);
+    rvv.write(i);
+    rhh.write(o);
+    rhv.write(i);
+      delay(400);
+    lvh.write(o);
+    lvv.write(o);
+    lhh.write(o);
+    lhv.write(o);
+    rvh.write(i);
+    rvv.write(o);
+    rhh.write(i);
+    rhv.write(o);
+      delay(400);
+    lvh.write(i);
+    lvv.write(i);
+    lvh.write(o);
+    lhh.write(i);
+    lhv.write(i);
+    lhh.write(o);
+    rvh.write(i);
+    rvv.write(i);
+    rvh.write(i);
+    rhh.write(i);
+    rhv.write(i);
+    rhh.write(i);        
+      delay(400); 
+}  
+}
+
+
+void loop() {
+
+stehen(1);
+  laufenv(0);
+  
+
+  if( eventlaufen == true){
+   
+      Serial.println("loop event true");
+      delay(100);
+  }
+  
+
+
+
+
+
+  if( eventlaufen == false){
+    
+  
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    rvh.write(pos);
+    rvv.write(pos);
+    rhh.write(pos);
+    rhv.write(pos);
+    lhh.write(pos);
+    lhv.write(pos);
+    lvh.write(pos);
+    lvv.write(pos);
+    // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    rvh.write(pos);
+    rvv.write(pos);
+    rhh.write(pos);
+    rhv.write(pos);
+    lhh.write(pos);
+    lhv.write(pos);
+    lvh.write(pos);
+    lvv.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+
+  }
+  
+}
