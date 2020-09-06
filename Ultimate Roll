@@ -1,7 +1,6 @@
-
 //ultraschall
-const int trigPin = 10; 
-const int echoPin = 11;
+const int trigPin = 11; 
+const int echoPin = 12;
 long duration;
 int distance;
 
@@ -92,9 +91,10 @@ void setup() {
 
 void loop() {
   
-MPU6050 accelgyro;
+
  // read raw accel/gyro measurements from device
     accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+
 
 // display tab-separated accel/gyro x/y/z values
         Serial.print("a/g:\t");
@@ -107,6 +107,46 @@ MPU6050 accelgyro;
 
 
 
+
+
+
+
+
+
+digitalWrite(dirPin1,HIGH); // Enables the motor to move in a particular direction
+  digitalWrite(dirPin2,HIGH);
+  // Makes 200 pulses for making one full cycle rotation
+  for(int x = 0; x < 1000; x++) {
+    digitalWrite(stepPin1,HIGH); 
+    digitalWrite(stepPin2,HIGH); 
+    delayMicroseconds(500); 
+    digitalWrite(stepPin1,LOW);
+    digitalWrite(stepPin2,LOW);  
+    delayMicroseconds(500); 
+  }
+
+  /*
+  delay(1000); // One second delay
+  
+  digitalWrite(dirPin1,LOW); //Changes the rotations direction
+  digitalWrite(dirPin2,LOW);
+  // Makes 400 pulses for making two full cycle rotation
+  for(int x = 0; x < 1000; x++) {
+    digitalWrite(stepPin1,HIGH);
+    digitalWrite(stepPin2,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(stepPin1,LOW);
+    digitalWrite(stepPin2,LOW);
+    delayMicroseconds(500);
+  }
+
+
+*/
+
+
+
+
+/*
   
 //ultraschall
 digitalWrite(trigPin,LOW);
@@ -121,7 +161,7 @@ digitalWrite(trigPin,LOW);
 
  Serial.print("DIstance:  ");
  Serial.println(distance);
-
+*/
 
 
 
