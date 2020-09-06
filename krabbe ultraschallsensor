@@ -1,0 +1,148 @@
+#include <Servo.h>
+
+Servo rvh; 
+Servo rvv;
+Servo rhh;
+Servo rhv;
+Servo lhh;
+Servo lhv;
+Servo lvh;
+Servo lvv;
+Servo kopf;
+
+// Servo create
+// twelve servo objects can be created on most boards
+
+int pos = 90;    // variables to set
+boolean eventlaufen;
+int i =180;
+int o=0;
+int k=1;
+int x;
+int winkel = 45;
+const int trigPin = 10; 
+const int echoPin = 11;
+
+long duration;
+int distance;
+
+void setup() {                      //Setup beginn + attach mit wartezeiten
+
+//ultaschall
+ pinMode(trigPin, OUTPUT);
+ pinMode(echoPin,INPUT);
+ Serial.begin(9600);
+  rvh.attach(7);
+  delay(200);
+  rvv.attach(6);
+  delay(200);
+  rhv.attach(8);
+  delay(200);
+  rhh.attach(9);
+  delay(200);
+  lhv.attach(4);
+  delay(200);
+  lhh.attach(5);
+  delay(200);
+  lvv.attach(3);
+  delay(200);
+  lvh.attach(2);
+  delay(300);
+  kopf.attach(12);
+  delay(3000);
+  
+  eventlaufen= true;
+                                        // true = loop1/false =loop2
+
+
+    lvv.write(pos);
+    delay(1000);
+     lvh.write(pos);
+    delay(1000);
+     lhv.write(pos);
+    delay(1000);
+     lhh.write(pos);
+    delay(1000);
+
+     rvv.write(pos);
+    delay(1000);
+     rvh.write(pos);
+    delay(1000);
+     rhv.write(pos);
+    delay(1000);
+     rhh.write(pos);
+    delay(1000);
+    kopf.write(pos-10);
+    delay(1000);
+}
+
+
+
+void laufen(int x){
+                                   //stehen 1
+for(k=1; k<=x; k+=1){
+  
+lvh.write(i-winkel);    //Bein zurück !!!   1
+rvh.write(o+winkel); 
+lhh.write(i-winkel);    //Bein zurück !!!   1
+rhh.write(o+winkel); 
+delay(1000);  
+lvv.write(i-winkel);    // Fuß heben        2
+rvv.write(i-winkel);
+lhv.write(i-winkel);    // Fuß heben        2
+rhv.write(i-winkel);
+delay(1000); 
+lvh.write(0+winkel);    //Bein vorne        3
+rvh.write(i-winkel);
+lhh.write(0+winkel);    //Bein vorne        3
+rhh.write(i-winkel);
+delay(1000);            
+lvv.write(i);    // Fuß runter              4
+rvv.write(i);
+lhv.write(i);    // Fuß runter              4
+rhv.write(i);
+delay(1000);
+}
+delay(1000);
+}
+
+void loop() {
+  /*
+ digitalWrite(trigPin,LOW);
+ delayMicroseconds(2);
+
+ digitalWrite(trigPin,HIGH);
+ delayMicroseconds(10);
+ digitalWrite(trigPin,LOW);
+
+ duration = pulseIn(echoPin,HIGH);
+ distance = duration*0.034/2;
+
+ Serial.print("DIstance:");
+ Serial.println(distance);
+
+ 
+
+
+
+
+  
+
+//  laufen(1);
+  
+  if( distance >= 15){
+      //stehen(1);
+      laufen(1);
+      delay(1000);
+  }
+  else{
+*/
+
+  lvh.write(40);
+  delay(1000);  
+  lvh.write(90);
+  delay(1000);
+  Serial.println("blocked");
+  }
+  
+  
