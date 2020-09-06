@@ -1,6 +1,9 @@
 //ultraschall
 const int trigPin = 11; 
 const int echoPin = 12;
+const int ms1Pin = 9; 
+const int ms2Pin = 10;
+
 long duration;
 int distance;
 
@@ -19,7 +22,8 @@ int16_t gx, gy, gz;
 
 void setup() {
   
-
+pinMode(ms1Pin, OUTPUT);
+pinMode(ms2Pin, OUTPUT);
 
 
 //ultaschall
@@ -90,7 +94,9 @@ void setup() {
 }
 
 void loop() {
-  
+
+  digitalWrite(ms1Pin,HIGH); 
+  digitalWrite(ms2Pin,HIGH); // Low ist fast mode
 
  // read raw accel/gyro measurements from device
     accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
@@ -106,9 +112,6 @@ void loop() {
         Serial.println(gz);
 
 
-
-
-
 //if schleife
 
 if (ay < 0){
@@ -116,36 +119,36 @@ if (ay < 0){
   digitalWrite(dirPin2,HIGH);
   Serial.print("vorwärts");
   if (ay<-1000){
-    for(int x=0;x<1000;x++){
+    for(int x=0;x<200;x++){
     digitalWrite(stepPin1,HIGH); 
-     delayMicroseconds(500);
+    digitalWrite(stepPin2,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(stepPin1,LOW); 
     digitalWrite(stepPin2,LOW); 
-    delayMicroseconds(500); 
+    delayMicroseconds(500);
+    
     }}
   
 }
-else{
+if(ay>0){
   digitalWrite(dirPin1,LOW); // Enables the motor to move in a particular direction
   digitalWrite(dirPin2,LOW);
   Serial.print("rückwärts"); 
-
-  if (ay>1000){
-    for(int x=0;x<1000;x++){
+ if (ay>1000){
+    for(int x=0;x<200;x++){
     digitalWrite(stepPin1,HIGH); 
-     delayMicroseconds(500);
+    digitalWrite(stepPin2,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(stepPin1,LOW); 
     digitalWrite(stepPin2,LOW); 
-    delayMicroseconds(500); 
-  }}
-}     
-
-
-
-
+    delayMicroseconds(500);
+  }}}
 
 
 
 //normal bwegen
 
+/*
 digitalWrite(dirPin1,HIGH); // Enables the motor to move in a particular direction
   digitalWrite(dirPin2,HIGH);
   // Makes 200 pulses for making one full cycle rotation
@@ -158,7 +161,7 @@ digitalWrite(dirPin1,HIGH); // Enables the motor to move in a particular directi
     delayMicroseconds(500); 
   }
 
-  /*
+  
   delay(1000); // One second delay
   
   digitalWrite(dirPin1,LOW); //Changes the rotations direction
@@ -179,9 +182,8 @@ digitalWrite(dirPin1,HIGH); // Enables the motor to move in a particular directi
 
 
 
-/*
-  
-//ultraschall
+ if (ay<1000&&ay>-1000){
+  //ultraschall
 digitalWrite(trigPin,LOW);
  delayMicroseconds(2);
 
@@ -194,7 +196,9 @@ digitalWrite(trigPin,LOW);
 
  Serial.print("DIstance:  ");
  Serial.println(distance);
-*/
+ }
+  
+
 
 
 
