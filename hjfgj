@@ -1,0 +1,71 @@
+#include <Wire.h> // Wire Bibliothek einbinden
+#include <LiquidCrystal_I2C.h> // Vorher hinzugefügte LiquidCrystal_I2C Bibliothek einbinden
+LiquidCrystal_I2C lcd(0x27, 16, 2); //Hier wird festgelegt um was für einen Display es sich handelt. In diesem Fall eines mit 16 Zeichen in 2 Zeilen und der HEX-Adresse 0x27. Für ein vierzeiliges I2C-LCD verwendet man den Code "LiquidCrystal_I2C lcd(0x27, 20, 4)" 
+
+
+byte re[8] = {
+  0x1F,
+  0x11,
+  0x11,
+  0x11,
+  0x1D,
+  0x1D,
+  0x1D,
+  0x1F
+};
+
+byte li[8] = {
+  0x1F,
+  0x11,
+  0x11,
+  0x11,
+  0x17,
+  0x17,
+  0x17,
+  0x1F
+};
+
+byte mure[8] = {
+  0x10,
+  0x00,
+  0x00,
+  0x01,
+  0x06,
+  0x18,
+  0x00,
+  0x00
+};
+
+byte muli[8] = {
+  0x01,
+  0x00,
+  0x00,
+  0x10,
+  0x0C,
+  0x03,
+  0x00,
+  0x00
+};
+  
+void setup() {
+  lcd.init(); // initialize the lcd
+  lcd.backlight();
+  
+  lcd.createChar(0, li); // create a new custom character
+  lcd.setCursor(6, 0); // move cursor to (2, 0)
+  lcd.write((byte)0);  // print the custom char at (2, 0)
+  
+  lcd.createChar(1, re); // create a new custom character
+  lcd.setCursor(9, 0); // move cursor to (2, 0)
+  lcd.write((byte)1);  // print the custom char at (2, 0)
+
+  lcd.createChar(2, muli); // create a new custom character
+  lcd.setCursor(7, 1); // move cursor to (2, 0)
+  lcd.write((byte)2);  // print the custom char at (2, 0)
+
+  lcd.createChar(3, mure); // create a new custom character
+  lcd.setCursor(8, 1); // move cursor to (2, 0)
+  lcd.write((byte)3);  // print the custom char at (2, 0)
+}
+
+void loop() { }
