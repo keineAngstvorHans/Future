@@ -109,9 +109,42 @@ void loop() {
 
 
 
+//if schleife
+
+if (ay < 0){
+  digitalWrite(dirPin1,HIGH); // Enables the motor to move in a particular direction
+  digitalWrite(dirPin2,HIGH);
+  Serial.print("vorwärts");
+  if (ay<-1000){
+    for(int x=0;x<1000;x++){
+    digitalWrite(stepPin1,HIGH); 
+     delayMicroseconds(500);
+    digitalWrite(stepPin2,LOW); 
+    delayMicroseconds(500); 
+    }}
+  
+}
+else{
+  digitalWrite(dirPin1,LOW); // Enables the motor to move in a particular direction
+  digitalWrite(dirPin2,LOW);
+  Serial.print("rückwärts"); 
+
+  if (ay>1000){
+    for(int x=0;x<1000;x++){
+    digitalWrite(stepPin1,HIGH); 
+     delayMicroseconds(500);
+    digitalWrite(stepPin2,LOW); 
+    delayMicroseconds(500); 
+  }}
+}     
 
 
 
+
+
+
+
+//normal bwegen
 
 digitalWrite(dirPin1,HIGH); // Enables the motor to move in a particular direction
   digitalWrite(dirPin2,HIGH);
